@@ -1,17 +1,32 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    ARASH REZAVANDI
+    <AppInput @AddCounter="AddCounter"/>
+    <div class="counter-wrapper">
+      <AppCounter v-for="(counter, i) in counters" :key="i" :step="counter" />
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
+import AppInput from '@/components/input'
+import AppCounter from '@/components/counter'
 export default {
   name: 'App',
+  data(){
+    return{
+      counters: []
+    }
+  },
   components: {
-    HelloWorld
+    AppInput,
+    AppCounter
+  },
+  methods:{
+    AddCounter(stepCounter){
+      this.counters.push(stepCounter);
+    }
   }
 }
 </script>
@@ -24,5 +39,14 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  width: 1140px;
+  margin: 0 auto;
+}
+
+.counter-wrapper{
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-start;
+
 }
 </style>
